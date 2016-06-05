@@ -33,3 +33,5 @@ full.agg <- array(0, dim=c(7,7,3,3),
 for(i in 1:nrow(agg))
   full.agg[agg[i,1],agg[i,2],agg[i,3],agg[i,4]] <- agg[i,5]
 
+
+#### this a test
