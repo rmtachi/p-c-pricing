@@ -24,6 +24,12 @@ moto.curr$vage <- as.factor(moto.curr$vage)
 moto.curr$bonus <- as.factor(moto.curr$bonus)
 
 #### aggregate exposure (duration)
-aggregate(duration ~ zone + mc + vage + bonus, data=moto.curr, FUN=sum)
+agg <- aggregate(duration ~ zone + mc + vage + bonus, data=moto.curr, FUN=sum)
 
-?aggregate
+#### include combinations with no exposure
+full.agg <- array(0, dim=c(7,7,3,3),
+                  dimnames=list(zone=NULL, mc=NULL, vage=NULL, bonus=NULL))
+
+for(i in 1:nrow(agg))
+  full.agg[agg[i,1],agg[i,2],agg[i,3],agg[i,4]] <- agg[i,5]
+
